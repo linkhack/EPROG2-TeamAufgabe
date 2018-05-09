@@ -38,8 +38,9 @@ public class LocationArrayList implements LocationQuery
     @Override
     public int[] locationsInArea(float x, float y, float radius) {
         int[] result = new int[2];
-        for(Location l : locations)
+        for(int i = 0;i<nextFree;++i)
         {
+            Location l = locations[i];
             if(l.getDistance(x,y)<radius)
                 result[l.getLocationType().ordinal()]++;
         }
@@ -50,8 +51,9 @@ public class LocationArrayList implements LocationQuery
     public int airportsWithNStations(int stationCount, float radius)
     {
         int amount = 0;
-        for(Location l : locations)
+        for(int i = 0;i<nextFree;++i)
         {
+            Location l = locations[i];
             //if l is an airport, call locationsInArea to see if there are enough train stations around
             if(l.getLocationType()==LocationType.AIRPORT && locationsInArea(l.getX(),l.getY(),radius)[LocationType.TRAINSTATION.ordinal()]>=stationCount)
                 amount++;
