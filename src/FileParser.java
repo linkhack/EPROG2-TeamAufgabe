@@ -6,6 +6,10 @@ public class FileParser {
     File file;
     Scanner scanner;
 
+    /**
+     * Creates a parser object reading File  path
+     * @param path Filename "path/filename.extension"
+     */
     public FileParser(String path){
         file = new File(path);
         try {
@@ -16,6 +20,10 @@ public class FileParser {
         scanner.useDelimiter(";");
     }
 
+    /**
+     * next Location
+     * @return Location containing the next Location, null if file is empty.
+     */
     public Location nextLocation(){
         if(scanner.hasNext()) {
             String name = scanner.next();
