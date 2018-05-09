@@ -1,6 +1,12 @@
 public interface LocationQuery
 {
     /**
+     * Adds given location
+     * @param location
+     */
+    void add(Location location);
+
+    /**
      * @param x
      * @param y
      * @param radius
