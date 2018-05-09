@@ -33,4 +33,8 @@ public class Location {
     public double getDistance(Location loc){
         return getDistance(loc.x,loc.y);
     }
+
+    public String toString(){
+        return "{"+name+","+x+","+y+","+locationType+"}";
+    }
 }
