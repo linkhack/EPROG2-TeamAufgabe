@@ -15,7 +15,7 @@ public class LocationQuadTree implements LocationQuery {
         if(root !=null){
             root.add(location);
         }else{
-            root = new QuadTreeNode(location,-100000.0f,-100000.0f,100000.0f,100000.0f);
+            root = new QuadTreeNode(location,-100000.0f,100000.0f,100000.0f,-100000.0f);
         }
     }
 

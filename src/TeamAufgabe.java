@@ -6,9 +6,13 @@ public class TeamAufgabe {
 
     public static void main(String[] args) {
 	    LocationArrayList list = new LocationArrayList();
+	    LocationQuadTree quadTree = new LocationQuadTree(-100000.0f,100000.0f,100000.0f,-100000.0f);
 	    fillDatastructure(list);
 	    testLocationCount(list);
-	    testAirportsWithNStations(list);
+	    //testAirportsWithNStations(list); takes very long
+
+	    //QuadTree test
+        fillDatastructure(quadTree); //Duplicate coordinates break recursion!!!!
     }
 
     public static void fillDatastructure(LocationQuery lq)
@@ -51,7 +55,7 @@ public class TeamAufgabe {
     {
         Instant start = Instant.now();
 
-        int result = lq.airportsWithNStations(10, 500);
+        int result = lq.airportsWithNStations(10, 50);
 
         Instant end = Instant.now();
         System.out.println("airportsWithNStations of "+lq.getClass().getName()+" needed "+Duration.between(start,end).toMillis()+"ms");
