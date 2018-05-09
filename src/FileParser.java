@@ -10,19 +10,15 @@ public class FileParser {
      * Creates a parser object reading File  path
      * @param path Filename "path/filename.extension"
      */
-    public FileParser(String path){
+    public FileParser(String path) throws FileNotFoundException{
         file = new File(path);
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        scanner = new Scanner(file);
         scanner.useDelimiter(";");
     }
 
     /**
      * next Location
-     * @return Location containing the next Location, null if file is empty.
+     * @return Location containing the next Location, null if end of file is reached
      */
     public Location nextLocation(){
         if(scanner.hasNext()) {
