@@ -27,4 +27,10 @@ public class Location {
         return locationType;
     }
 
+    public double getDistance(float x, float y){
+        return Math.sqrt(Math.pow(this.x-x,2)+Math.pow(this.y-y,2));
+    }
+    public double getDistance(Location loc){
+        return getDistance(loc.x,loc.y);
+    }
 }
