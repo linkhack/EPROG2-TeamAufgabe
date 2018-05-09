@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FileParser {
@@ -13,7 +14,7 @@ public class FileParser {
     public FileParser(String path) throws FileNotFoundException{
         file = new File(path);
         scanner = new Scanner(file);
-        scanner.useDelimiter(";");
+        scanner.useDelimiter(";|\\n");
     }
 
     /**
@@ -27,8 +28,8 @@ public class FileParser {
             float y = scanner.nextFloat();
             LocationType type = (scanner.next().equalsIgnoreCase("airport") ? LocationType.AIRPORT : LocationType.TRAINSTATION);
             return new Location(name, x, y, type);
-        }else {
-            return null;
         }
+
+        return null;
     }
 }
