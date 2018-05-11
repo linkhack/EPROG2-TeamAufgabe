@@ -1,3 +1,9 @@
+/**
+ * Implements the nodes for the Quad tree. Ignores null values.
+ * Saves up to 8 locations in one leaf, if more then 8 would be added into a leaf, the leaf gets split into
+ * its children. If one box has a smaller dimension than 0.001, it wont get split anymore and value just saves more
+ * Locations.
+ */
 public class QuadTreeNode {
     private Location value;
 
