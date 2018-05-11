@@ -60,4 +60,24 @@ public class LocationArrayList implements LocationQuery
         }
         return amount;
     }
+
+    /**
+     * Checks the number of Locations in List
+     * @return number of Locations in ArrayList
+     */
+    public int size(){
+        return nextFree;
+    }
+
+    /**
+     * To access single elements in List
+     * @param i index of location
+     * @return Location at index i if 0<=i<nextFree else null
+     */
+    public Location get(int i){
+        if(i<0||i>=nextFree){
+            return null;
+        }
+        return locations[i];
+    }
 }
