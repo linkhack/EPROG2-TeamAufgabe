@@ -1,18 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FileParser {
-    File file;
-    Scanner scanner;
+    private Scanner scanner;
 
     /**
      * Creates a parser object reading File  path
      * @param path Filename "path/filename.extension"
      */
     public FileParser(String path) throws FileNotFoundException{
-        file = new File(path);
+        File file = new File(path);
         scanner = new Scanner(file);
         scanner.useDelimiter(";|\\n");
     }

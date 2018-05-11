@@ -1,14 +1,15 @@
 public class LocationQuadTree implements LocationQuery {
-    QuadTreeNode root;
+    private QuadTreeNode root;
 
 
     public LocationQuadTree(float topLeftx, float topLefty, float bottomRightx, float bottomRighty){
         root = new QuadTreeNode(topLeftx,topLefty,bottomRightx,bottomRighty);
     }
     /**
-     * Adds given location
+     * Adds given location.
+     * Implementation in QuadTreeNode
      *
-     * @param location
+     * @param location Location to be added into QuadTree
      */
     @Override
     public void add(Location location) {

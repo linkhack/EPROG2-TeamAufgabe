@@ -1,8 +1,8 @@
 public class Location {
-    String name;
-    float x;
-    float y;
-    LocationType locationType;
+    private String name;
+    private float x;
+    private float y;
+    private LocationType locationType;
 
     public Location(String name, float x, float y, LocationType locationType) {
         this.name = name;

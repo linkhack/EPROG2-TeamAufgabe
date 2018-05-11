@@ -5,7 +5,7 @@
  * Locations.
  */
 public class QuadTreeNode {
-    private Location value;
+    private LocationArrayList values = new LocationArrayList();
 
     //children
     private QuadTreeNode topLeft;
@@ -14,13 +14,13 @@ public class QuadTreeNode {
     private QuadTreeNode bottomRight;
 
     //bounding box
-    private float topLeftx;
-    private float topLefty;
-    private float bottomRightx;
-    private float bottomRighty;
+    private final float topLeftx;
+    private final float topLefty;
+    private final float bottomRightx;
+    private final float bottomRighty;
 
     //flag. Is true if node is leaf;
-    private boolean leafFlag;
+    private boolean leafFlag=true;
 
     public QuadTreeNode(float topLeftx, float topLefty, float bottomRightx, float bottomRighty) {
         this.topLeftx = topLeftx;
@@ -31,12 +31,7 @@ public class QuadTreeNode {
 
     public QuadTreeNode(Location value, float topLeftx, float topLefty, float bottomRightx, float bottomRighty) {
         this(topLeftx, topLefty, bottomRightx, bottomRighty);
-        this.value = value;
-        leafFlag = true;
-    }
-
-    public Location getValue() {
-        return value;
+        values.add(value);
     }
 
     /**
@@ -50,14 +45,24 @@ public class QuadTreeNode {
         if (!inBoundry(loc)) {
             return;
         }
-        if (leafFlag) {
+        //values is full
+        if (leafFlag&&values.size()>=8&&Math.abs(topLeftx-bottomRightx)>0.001&&Math.abs(topLefty-bottomRighty)>0.001) {
             //split current node into 4 regions and pass value to correct subregion
             //x-split
-            splitNode(value);
-            leafFlag = false;
+            for(int i=0; i<values.size();++i){
+                splitNode(values.get(i));
+            }
+            splitNode(loc);
+            leafFlag=false;
+            values=null;
+            return;
         }
-        splitNode(loc);
-        return;
+        //values still has empty place
+        if(leafFlag){
+            values.add(loc);
+        }else{
+            splitNode(loc);
+        }
     }
 
     /**
@@ -73,12 +78,6 @@ public class QuadTreeNode {
     }
 
     private void splitNode(Location loc) {
-        if(Math.abs(topLeftx-bottomRightx)<0.001||Math.abs(topLefty-bottomRighty)<0.001){
-            System.out.println("Too near");
-            System.out.println(value);
-            System.out.println(loc);
-            return;
-        }
         float xSplit = (topLeftx + bottomRightx) / 2;
         float ySplit = (topLefty + bottomRighty) / 2;
         boolean isTop = ySplit <= loc.getY();
