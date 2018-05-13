@@ -7,9 +7,15 @@ public class TeamAufgabe {
     public static void main(String[] args) {
 	    LocationArrayList list = new LocationArrayList();
 	    LocationQuadTree quadTree = new LocationQuadTree(-100000.0f,100000.0f,100000.0f,-100000.0f);
+	    Location2DTree tree2D = new Location2DTree();
+
 	    fillDatastructure(list);
 	    testLocationCount(list);
-	    //testAirportsWithNStations(list); takes very long
+	    //testAirportsWithNStations(list);
+
+        fillDatastructure(tree2D);
+        testLocationCount(tree2D);
+        testAirportsWithNStations(tree2D);
 
 	    //QuadTree test
         fillDatastructure(quadTree); //Duplicate coordinates break recursion!!!!
