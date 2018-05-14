@@ -11,7 +11,7 @@ public class TeamAufgabe {
 
 	    fillDatastructure(list);
 	    testLocationCount(list);
-	    //testAirportsWithNStations(list);
+	    testAirportsWithNStations(list);
 
         fillDatastructure(tree2D);
         testLocationCount(tree2D);

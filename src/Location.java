@@ -27,14 +27,15 @@ public class Location {
         return locationType;
     }
 
-    public double getDistance(float x, float y){
-        return Math.sqrt(Math.pow(this.x-x,2)+Math.pow(this.y-y,2));
-    }
-    public double getDistance(Location loc){
-        return getDistance(loc.x,loc.y);
+    public double getDistance(float x, float y) {
+        return (this.x - x) * (this.x - x) + (this.y - y) * (this.y - y);
     }
 
-    public String toString(){
-        return "{"+name+","+x+","+y+","+locationType+"}";
+    public double getDistance(Location loc) {
+        return getDistance(loc.x, loc.y);
+    }
+
+    public String toString() {
+        return "{" + name + "," + x + "," + y + "," + locationType + "}";
     }
 }
