@@ -29,21 +29,23 @@ public class Location {
 
     /**
      * Distance suared!!
+     *
      * @param x
      * @param y
      * @return Distance squared from location to point (x,y)
      */
-    public double getDistance(float x, float y) {
+    public double getDistanceSquared(float x, float y) {
         return (this.x - x) * (this.x - x) + (this.y - y) * (this.y - y);
     }
 
     /**
      * Distance squared
+     *
      * @param loc location to be compared
      * @return Distance from this to loc squared.
      */
-    public double getDistance(Location loc) {
-        return getDistance(loc.x, loc.y);
+    public double getDistanceSquared(Location loc) {
+        return getDistanceSquared(loc.x, loc.y);
     }
 
     public String toString() {

@@ -90,7 +90,7 @@ public class Location2DTree implements LocationQuery
                 if(checkRight)
                 {
                     //if the circle is on both sides, check if this location is on the circle
-                    if(location.getDistance(x,y)<=radius*radius)
+                    if(location.getDistanceSquared(x,y)<=radius*radius)
                         count[location.getLocationType().ordinal()]++;
                 }
 

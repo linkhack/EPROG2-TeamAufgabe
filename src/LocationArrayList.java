@@ -41,7 +41,7 @@ public class LocationArrayList implements LocationQuery
         for(int i = 0;i<nextFree;++i)
         {
             Location l = locations[i];
-            if(l.getDistance(x,y)<=radius*radius)
+            if(l.getDistanceSquared(x,y)<=radius*radius)
                 result[l.getLocationType().ordinal()]++;
         }
         return result;
