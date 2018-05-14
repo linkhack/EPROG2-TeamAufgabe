@@ -48,7 +48,6 @@ public class QuadTreeNode {
         //values is full
         if (leafFlag&&values.size()>=8&&Math.abs(topLeftx-bottomRightx)>0.001&&Math.abs(topLefty-bottomRighty)>0.001) {
             //split current node into 4 regions and pass value to correct subregion
-            //x-split
             for(int i=0; i<values.size();++i){
                 splitNode(values.get(i));
             }
@@ -110,5 +109,43 @@ public class QuadTreeNode {
                 }
             }
         }
+    }
+
+    public void locationsInArea(int[] result, float x, float y, float radius) {
+        if(!leafFlag) {
+            float xSplit = (topLeftx + bottomRightx) / 2;
+            float ySplit = (topLefty + bottomRighty) / 2;
+            boolean left = (x - radius <= xSplit);
+            boolean right = (x + radius > xSplit);
+            boolean top = (y + radius >= ySplit);
+            boolean bottom = (y - radius) < ySplit;
+            if(top&&left&&(topLeft!=null)) topLeft.locationsInArea(result, x, y, radius);
+            if(top&&right&&(topRight!=null)) topRight.locationsInArea(result, x, y, radius);
+            if(bottom&&left&&(bottomLeft!=null)) bottomLeft.locationsInArea(result, x, y, radius);
+            if(bottom&&right&&(bottomRight!=null)) bottomRight.locationsInArea(result, x, y, radius);
+        }else {
+            int[] leafResult = values.locationsInArea(x, y, radius);
+            result[0] += leafResult[0];
+            result[1] += leafResult[1];
+        }
+    }
+
+    public int airportsWithNStations(LocationQuadTree tree, int stationCount, float radius) {
+        int sum = 0;
+        if(leafFlag){
+            for(int i = 0; i<values.size(); ++i){
+                Location l = values.get(i);
+                if(l.getLocationType()==LocationType.AIRPORT
+                        &&tree.locationsInArea(l.getX(),l.getY(),radius)[LocationType.TRAINSTATION.ordinal()]>=stationCount){
+                    ++sum;
+                }
+            }
+        }else{
+            if(topLeft!=null) sum+=topLeft.airportsWithNStations(tree, stationCount, radius);
+            if(topRight!=null) sum+= topRight.airportsWithNStations(tree,stationCount,radius);
+            if(bottomLeft!=null) sum+= bottomLeft.airportsWithNStations(tree, stationCount, radius);
+            if(bottomRight!=null) sum+= bottomRight.airportsWithNStations(tree, stationCount, radius);
+        }
+        return sum;
     }
 }

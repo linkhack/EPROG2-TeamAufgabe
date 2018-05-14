@@ -18,7 +18,9 @@ public class TeamAufgabe {
         testAirportsWithNStations(tree2D);
 
 	    //QuadTree test
-        fillDatastructure(quadTree); //Duplicate coordinates break recursion!!!!
+        fillDatastructure(quadTree);
+        testLocationCount(quadTree);
+        testAirportsWithNStations(quadTree);
     }
 
     public static void fillDatastructure(LocationQuery lq)

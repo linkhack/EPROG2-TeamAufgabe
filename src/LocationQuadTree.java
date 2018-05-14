@@ -28,7 +28,9 @@ public class LocationQuadTree implements LocationQuery {
      */
     @Override
     public int[] locationsInArea(float x, float y, float radius) {
-        return new int[0];
+       int[] result = new int[2];
+       if(root!=null) root.locationsInArea(result,x,y,radius);
+       return result;
     }
 
     /**
@@ -38,6 +40,7 @@ public class LocationQuadTree implements LocationQuery {
      */
     @Override
     public int airportsWithNStations(int stationCount, float radius) {
+        if (root!=null) return root.airportsWithNStations(this,stationCount,radius);
         return 0;
     }
 }
