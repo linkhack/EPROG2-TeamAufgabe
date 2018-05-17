@@ -14,22 +14,22 @@ public class QuadTreeNode {
     private QuadTreeNode bottomRight;
 
     //bounding box
-    private final float topLeftx;
-    private final float topLefty;
-    private final float bottomRightx;
-    private final float bottomRighty;
+    private final double topLeftx;
+    private final double topLefty;
+    private final double bottomRightx;
+    private final double bottomRighty;
 
     //flag. Is true if node is leaf;
     private boolean leafFlag=true;
 
-    public QuadTreeNode(float topLeftx, float topLefty, float bottomRightx, float bottomRighty) {
+    public QuadTreeNode(double topLeftx, double topLefty, double bottomRightx, double bottomRighty) {
         this.topLeftx = topLeftx;
         this.topLefty = topLefty;
         this.bottomRightx = bottomRightx;
         this.bottomRighty = bottomRighty;
     }
 
-    public QuadTreeNode(Location value, float topLeftx, float topLefty, float bottomRightx, float bottomRighty) {
+    public QuadTreeNode(Location value, double topLeftx, double topLefty, double bottomRightx, double bottomRighty) {
         this(topLeftx, topLefty, bottomRightx, bottomRighty);
         values.add(value);
     }
@@ -77,8 +77,8 @@ public class QuadTreeNode {
     }
 
     private void splitNode(Location loc) {
-        float xSplit = (topLeftx + bottomRightx) / 2;
-        float ySplit = (topLefty + bottomRighty) / 2;
+        double xSplit = (topLeftx + bottomRightx) / 2;
+        double ySplit = (topLefty + bottomRighty) / 2;
         boolean isTop = ySplit <= loc.getY();
         if (xSplit >= loc.getX()) { //left
             if (isTop) { //top
@@ -111,10 +111,10 @@ public class QuadTreeNode {
         }
     }
 
-    public void locationsInArea(int[] result, float x, float y, float radius) {
+    public void locationsInArea(int[] result, double x, double y, double radius) {
         if(!leafFlag) {
-            float xSplit = (topLeftx + bottomRightx) / 2;
-            float ySplit = (topLefty + bottomRighty) / 2;
+            double xSplit = (topLeftx + bottomRightx) / 2;
+            double ySplit = (topLefty + bottomRighty) / 2;
             boolean left = (x - radius <= xSplit);
             boolean right = (x + radius > xSplit);
             boolean top = (y + radius >= ySplit);
@@ -130,7 +130,7 @@ public class QuadTreeNode {
         }
     }
 
-    public int airportsWithNStations(LocationQuadTree tree, int stationCount, float radius) {
+    public int airportsWithNStations(LocationQuadTree tree, int stationCount, double radius) {
         int sum = 0;
         if(leafFlag){
             for(int i = 0; i<values.size(); ++i){

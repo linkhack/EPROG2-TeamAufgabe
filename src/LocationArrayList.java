@@ -1,5 +1,5 @@
 /**
- * LocationArrayList stores Locations in an array list in the same order in which they are added
+ * LocationArrayList stores Locations in an array§ list in the same order in which they are added
  * If the array space runs out, the array is replaced by an array with twice the size of the original one
  * LocationArrayList ignores null-values
  */
@@ -36,7 +36,7 @@ public class LocationArrayList implements LocationQuery
     }
 
     @Override
-    public int[] locationsInArea(float x, float y, float radius) {
+    public int[] locationsInArea(double x, double y, double radius) {
         int[] result = new int[2];
         for(int i = 0;i<nextFree;++i)
         {
@@ -48,7 +48,7 @@ public class LocationArrayList implements LocationQuery
     }
 
     @Override
-    public int airportsWithNStations(int stationCount, float radius)
+    public int airportsWithNStations(int stationCount, double radius)
     {
         int amount = 0;
         for(int i = 0;i<nextFree;++i)

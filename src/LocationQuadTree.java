@@ -27,7 +27,7 @@ public class LocationQuadTree implements LocationQuery {
      * @return an array with 2 elements, where the n-th element is the occurrence of locations with the type of the n-th enum value, which are inside the given circle
      */
     @Override
-    public int[] locationsInArea(float x, float y, float radius) {
+    public int[] locationsInArea(double x, double y, double radius) {
        int[] result = new int[2];
        if(root!=null) root.locationsInArea(result,x,y,radius);
        return result;
@@ -39,7 +39,7 @@ public class LocationQuadTree implements LocationQuery {
      * @return the amount of airports, that have at least stationCount Train stations located in the given radius
      */
     @Override
-    public int airportsWithNStations(int stationCount, float radius) {
+    public int airportsWithNStations(int stationCount, double radius) {
         if (root!=null) return root.airportsWithNStations(this,stationCount,radius);
         return 0;
     }

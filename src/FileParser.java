@@ -22,8 +22,8 @@ public class FileParser {
     public Location nextLocation(){
         if(scanner.hasNext()) {
             String name = scanner.next();
-            float x = scanner.nextFloat();
-            float y = scanner.nextFloat();
+            double x = scanner.nextDouble();
+            double y = scanner.nextDouble();
             LocationType type = (scanner.next().equalsIgnoreCase("airport") ? LocationType.AIRPORT : LocationType.TRAINSTATION);
             return new Location(name, x, y, type);
         }

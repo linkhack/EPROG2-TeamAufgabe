@@ -1,10 +1,10 @@
 public class Location {
     private String name;
-    private float x;
-    private float y;
+    private double x;
+    private double y;
     private LocationType locationType;
 
-    public Location(String name, float x, float y, LocationType locationType) {
+    public Location(String name, double x, double y, LocationType locationType) {
         this.name = name;
         this.x = x;
         this.y = y;
@@ -15,11 +15,11 @@ public class Location {
         return name;
     }
 
-    public float getX() {
+    public double getX() {
         return x;
     }
 
-    public float getY() {
+    public double getY() {
         return y;
     }
 
@@ -34,7 +34,7 @@ public class Location {
      * @param y
      * @return Distance squared from location to point (x,y)
      */
-    public double getDistanceSquared(float x, float y) {
+    public double getDistanceSquared(double x, double y) {
         return (this.x - x) * (this.x - x) + (this.y - y) * (this.y - y);
     }
 

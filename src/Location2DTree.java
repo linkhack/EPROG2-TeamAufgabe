@@ -11,8 +11,8 @@ public class Location2DTree implements LocationQuery
     //Coordinate suppliers for each dimension, see documentation on Location2DNode
     private static final CoordSupplier X_COORD = Location2DTree::getXCoord;
     private static final CoordSupplier Y_COORD = Location2DTree::getYCoord;
-    private static float getXCoord(float x, float y) {return x;}
-    private static float getYCoord(float x, float y) {return y;}
+    private static double getXCoord(double x, double y) {return x;}
+    private static double getYCoord(double x, double y) {return y;}
 
     /**
      * One node of the tree. Each node has a coordinate supplier, which is a method reference, that determines how the plane is split.
@@ -50,8 +50,8 @@ public class Location2DTree implements LocationQuery
          */
         public void add(Location newLoc)
         {
-            float coord = getCoord();
-            float otherCoord = getCoord(newLoc);
+            double coord = getCoord();
+            double otherCoord = getCoord(newLoc);
 
             if(otherCoord<=coord)
             {
@@ -77,10 +77,10 @@ public class Location2DTree implements LocationQuery
          * @param y
          * @param radius
          */
-        public void locationsInArea(int[] count, float x, float y, float radius)
+        public void locationsInArea(int[] count, double x, double y, double radius)
         {
-            float coord = getCoord();
-            float centerCoord = coordSupplier.get(x,y);
+            double coord = getCoord();
+            double centerCoord = coordSupplier.get(x,y);
 
             boolean checkLeft = centerCoord-radius<=coord;
             boolean checkRight = centerCoord+radius>=coord;
@@ -108,7 +108,7 @@ public class Location2DTree implements LocationQuery
          * @param radius
          * @return he count of all airports with stationCount Trainstations in the given radius in this (sub-)tree
          */
-        public int airportsWithNStations(Location2DTree tree, int stationCount, float radius)
+        public int airportsWithNStations(Location2DTree tree, int stationCount, double radius)
         {
             int sum = 0;
 
@@ -127,7 +127,7 @@ public class Location2DTree implements LocationQuery
         /**
          * @return the coordinate for this node
          */
-        private float getCoord()
+        private double getCoord()
         {
             return getCoord(location);
         }
@@ -136,7 +136,7 @@ public class Location2DTree implements LocationQuery
          * @param location
          * @return the coordinate of given location, that is important for this node (x or y)
          */
-        private float getCoord(Location location)
+        private double getCoord(Location location)
         {
             return coordSupplier.get(location.getX(),location.getY());
         }
@@ -163,7 +163,7 @@ public class Location2DTree implements LocationQuery
     }
 
     @Override
-    public int[] locationsInArea(float x, float y, float radius)
+    public int[] locationsInArea(double x, double y, double radius)
     {
         int[] result = new int[2];
         if(root!=null)
@@ -172,7 +172,7 @@ public class Location2DTree implements LocationQuery
     }
 
     @Override
-    public int airportsWithNStations(int stationCount, float radius)
+    public int airportsWithNStations(int stationCount, double radius)
     {
         if(root!=null)
             return root.airportsWithNStations(this,stationCount,radius);
@@ -187,5 +187,5 @@ interface CoordSupplier
      * @param y
      * @return either x or y
      */
-    float get(float x, float y);
+    double get(double x, double y);
 }
