@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class TeamAufgabe
 {
     private static final int LOCATION_COUNT_QUERIES = 1000;
-    private static final int AIRPORT_QUERIES = 8;
+    private static final int AIRPORT_QUERIES = 5;
     private static final int AIRPORT_QUERIES_EXCLUDING_LIST = 200;
     private static final double MIN_RADIUS = 10;
     private static final double MAX_RADIUS = 500;
