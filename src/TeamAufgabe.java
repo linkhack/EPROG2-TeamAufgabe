@@ -25,19 +25,21 @@ public class TeamAufgabe
         LocationArrayList list = new LocationArrayList();
 	    LocationQuadTree quadTree = new LocationQuadTree(-100000.0f,100000.0f,100000.0f,-100000.0f);
 	    Location2DTree tree2D = new Location2DTree();
+	    Location2DTreeBalanced balancedTree = new Location2DTreeBalanced();
 
 	    fillDatastructure(locations, list);
         fillDatastructure(locations,tree2D);
         fillDatastructure(locations,quadTree);
+        fillDatastructure(locations,balancedTree);
 
         System.out.println();
 
         //test locationsInArea for all data structures
-        testLocationCount(false, generateQueries(LOCATION_COUNT_QUERIES,locations),list, quadTree,tree2D);
+        testLocationCount(false, generateQueries(LOCATION_COUNT_QUERIES,locations),list, quadTree,tree2D,balancedTree);
         //test airportsWithNStations with a small query count (list needs quite long) for all data structures
-        testLocationCount(true,generateQueries(AIRPORT_QUERIES,locations),list,quadTree,tree2D);
+        testLocationCount(true,generateQueries(AIRPORT_QUERIES,locations),list,quadTree,tree2D,balancedTree);
         //test airportsWithNStations of the more intelligent data structures with a higher query count
-        testLocationCount(true,generateQueries(AIRPORT_QUERIES_EXCLUDING_LIST,locations),quadTree,tree2D);
+        testLocationCount(true,generateQueries(AIRPORT_QUERIES_EXCLUDING_LIST,locations),quadTree,tree2D,balancedTree);
     }
 
     public static ArrayList<Location> readLocationsFromFile()
