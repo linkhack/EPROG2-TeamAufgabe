@@ -5,6 +5,9 @@
  * Locations.
  */
 public class QuadTreeNode {
+    private static final int MAX_LOCATIONS = 8;
+    private static final double MIN_QUAD_SIZE = 0.001f;
+
     private LocationArrayList values = new LocationArrayList();
 
     //children
@@ -46,7 +49,7 @@ public class QuadTreeNode {
             return;
         }
         //values is full
-        if (leafFlag&&values.size()>=8&&Math.abs(topLeftx-bottomRightx)>0.001&&Math.abs(topLefty-bottomRighty)>0.001) {
+        if (leafFlag&&values.size()>=MAX_LOCATIONS&&Math.abs(topLeftx-bottomRightx)>MIN_QUAD_SIZE&&Math.abs(topLefty-bottomRighty)>MIN_QUAD_SIZE) {
             //split current node into 4 regions and pass value to correct subregion
             for(int i=0; i<values.size();++i){
                 splitNode(values.get(i));
