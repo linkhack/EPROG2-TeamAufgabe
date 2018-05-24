@@ -8,10 +8,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class TeamAufgabe
 {
     private static final int LOCATION_COUNT_QUERIES = 1000;
-    private static final int AIRPORT_QUERIES = 5;
-    private static final int AIRPORT_QUERIES_EXCLUDING_LIST = 200;
+    private static final int AIRPORT_QUERIES = 1;
+    private static final int AIRPORT_QUERIES_EXCLUDING_LIST = 100;
     private static final double MIN_RADIUS = 10;
-    private static final double MAX_RADIUS = 500;
+    private static final double MAX_RADIUS = 100;
     private static final int MIN_STATIONS = 1;
     private static final int MAX_STATIONS = 50;
     private static final String TIME_UNIT = "ms";
@@ -19,6 +19,7 @@ public class TeamAufgabe
     //the main method needs about 1 min to execute completely
     public static void main(String[] args) {
         ArrayList<Location> locations = readLocationsFromFile();
+        System.out.println("Anzahal Datenpunkte:");
         System.out.println(locations.size());
 
         //initialize data structures and add locations
