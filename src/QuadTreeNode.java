@@ -25,6 +25,13 @@ public class QuadTreeNode {
     //flag. Is true if node is leaf;
     private boolean leafFlag=true;
 
+    /**
+     * Creates ne node with bounding rectangle given by params
+     * @param topLeftx
+     * @param topLefty
+     * @param bottomRightx
+     * @param bottomRighty
+     */
     public QuadTreeNode(double topLeftx, double topLefty, double bottomRightx, double bottomRighty) {
         this.topLeftx = topLeftx;
         this.topLefty = topLefty;
@@ -32,6 +39,14 @@ public class QuadTreeNode {
         this.bottomRighty = bottomRighty;
     }
 
+    /**
+     * Creates leaf node with bounding box and value.
+     * @param value
+     * @param topLeftx
+     * @param topLefty
+     * @param bottomRightx
+     * @param bottomRighty
+     */
     public QuadTreeNode(Location value, double topLeftx, double topLefty, double bottomRightx, double bottomRighty) {
         this(topLeftx, topLefty, bottomRightx, bottomRighty);
         values.add(value);
@@ -114,6 +129,13 @@ public class QuadTreeNode {
         }
     }
 
+    /**
+     * helper function for locationsInArea
+     * @param result
+     * @param x
+     * @param y
+     * @param radius
+     */
     public void locationsInArea(int[] result, double x, double y, double radius) {
         if(!leafFlag) {
             double xSplit = (topLeftx + bottomRightx) / 2;
@@ -133,6 +155,13 @@ public class QuadTreeNode {
         }
     }
 
+    /**
+     * Implementation of airports With N Stations.
+     * @param tree
+     * @param stationCount
+     * @param radius
+     * @return
+     */
     public int airportsWithNStations(LocationQuadTree tree, int stationCount, double radius) {
         int sum = 0;
         if(leafFlag){
